@@ -9,11 +9,6 @@ instance Name [Char] where
     outward []=[]
     outward (a:b)=if a==' ' then b else a:outward b
 
-
-rename::[[Char]]->[Char]->[Char]
-rename a b=let (c,d)=break (==' ') b in head [e|e<-[c++" "++show f|f<-[(if null d then 0 else read (init d)::Integer)..]],notElem (filter (/=' ') e) (map (filter (/=' ')) a)]
-
-
 main::IO ()
 main=do
     putStrLn "neither or former or latter or both:"
@@ -46,5 +41,5 @@ mainb a b=do
     putStrLn (output b)
     c<-getLine
     case step a b of
-        Just d->if c=="E"||c=="e"||c=="exit" then main else mainb a d
+        Just d->if c=="E"||c=="e"||c=="exit"||b==d then main else mainb a d
         _->main
