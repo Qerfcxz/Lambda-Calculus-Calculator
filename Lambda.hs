@@ -9,6 +9,13 @@ data Lam a=Var a|App (Lam a) (Lam a)|Abs a (Lam a)
 
 data Tra a=Mon a|Pol (Lam a)|Sig
 
+instance Eq a=>Eq (Lam a) where
+    (==)::Lam a->Lam a->Bool
+    Var a==Var b=a==b
+    App a b==App c d=a==c&&b==d
+    Abs a b==Abs c d=a==c&&b==d
+    _==_=False
+
 input::Name a=>[Char]->Maybe (Lam a)
 input a=inputa a [] [] []
 
