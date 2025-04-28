@@ -1,9 +1,4 @@
-module Lambda where
-
-class Eq a=>Name a where
-    inward::[Char]->a
-    rename::[a]->a->a
-    outward::a->[Char]
+module Lambda(Lam,Name,inward,outward,rename,input,output,step,neither,former,latter,both) where
 
 data Lam a=Var a|App (Lam a) (Lam a)|Abs a (Lam a)
 
@@ -15,6 +10,11 @@ instance Eq a=>Eq (Lam a) where
     App a b==App c d=a==c&&b==d
     Abs a b==Abs c d=a==c&&b==d
     _==_=False
+
+class Eq a=>Name a where
+    inward::[Char]->a
+    outward::a->[Char]
+    rename::[a]->a->a
 
 input::Name a=>[Char]->Maybe (Lam a)
 input a=inputa a [] [] []
