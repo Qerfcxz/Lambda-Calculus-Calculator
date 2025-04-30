@@ -1,4 +1,4 @@
-module Lambda(Lam,Name,inward,outward,rename,input,output,step,neither,former,latter,both) where
+module Lambda(Lam(Var,App,Abs),Name,inward,outward,rename,input,output,free,step,neither,former,latter,both) where
 
 data Lam a=Var a|App (Lam a) (Lam a)|Abs a (Lam a)
 
